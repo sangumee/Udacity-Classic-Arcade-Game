@@ -100,11 +100,11 @@ function click1() {
     })
 }
 
-let Player = function (x, y, speed) {
+let Player = function (x, y, speed, value) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.sprite = '';
+    this.sprite = 'images/' + value + '.png';
 };
 
 Player.prototype.update = function () {
