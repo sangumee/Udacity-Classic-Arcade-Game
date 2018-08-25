@@ -1,77 +1,52 @@
-// Enemies our player must avoid
-let Enemy = function (x, y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.x = x;
-    this.y = y;
-    this.speed = speed;
-
-    this.sprite = 'images/enemy-bug.png';
-};
-
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function (dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-};
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-
-
 // To choose Character with VEX Library
-function click1() {
+function CharacterChoose() {
     vex.dialog.open({
         message: 'Which character do you want to play?',
+        input: [
+            '<img src="images/char-boy.png" class="imagepadding" />',
+            '<img src="images/char-cat-girl.png" class="imagepadding" />',
+            '<img src="images/char-horn-girl.png" class="imagepadding" />',
+            '<img src="images/char-pink-girl.png" class="imagepadding" />',
+            '<img src="images/char-princess-girl.png" class="imagepadding" />'
+        ].join(''),
         buttons: [
             $.extend({}, vex.dialog.buttons.NO, {
                 className: 'vex-dialog-button-primary-horizontal',
-                text: 'Char-Boy',
-                click: function (e) {
-                    this.value = 'Char-Boy';
-                    this.close();
-                }
-            }),
-            $.extend({}, vex.dialog.buttons.NO, {
-                className: 'vex-dialog-button-primary-horizontal',
-                text: 'Char-Cat-Girl',
-                click: function (e) {
-                    this.value = 'Char-Cat-Girl';
+                text: 'Char-Princess-Girl',
+                click: function () {
+                    this.value = 'char-princess-girl';
                     this.close();
                 }
             }),
             $.extend({}, vex.dialog.buttons.NO, {
                 className: 'vex-dialog-button-primary-horizontal',
                 text: 'Char-Horn-Girl',
-                click: function (e) {
-                    this.value = 'Char-Horn-Girl';
+                click: function () {
+                    this.value = 'char-horn-girl';
                     this.close();
                 }
             }),
             $.extend({}, vex.dialog.buttons.NO, {
                 className: 'vex-dialog-button-primary-horizontal',
                 text: 'Char-Pink-Girl',
-                click: function (e) {
-                    this.value = 'Char-Pink-Girl';
+                click: function () {
+                    this.value = 'char-pink-girl';
                     this.close();
                 }
             }),
             $.extend({}, vex.dialog.buttons.NO, {
                 className: 'vex-dialog-button-primary-horizontal',
-                text: 'Char-Princess-Girl',
-                click: function (e) {
-                    this.value = 'Char-Princess-Girl';
+                text: 'Char-Cat-Girl',
+                click: function () {
+                    this.value = 'char-cat-girl';
+                    this.close();
+                }
+            }),
+            $.extend({}, vex.dialog.buttons.NO, {
+                className: 'vex-dialog-button-primary-horizontal',
+                text: 'Char-Boy',
+                click: function () {
+                    this.value = 'char-boy';
                     this.close();
                 }
             })
@@ -80,8 +55,6 @@ function click1() {
             // char-boy','char-cat-girl','char-horn-girl','char-pink-girl','char-princess-girl
             if (value === 'Char-Boy') {
                 console.log('You choose Char-boy');
-                let player = new Player(200, 400, 100, char);
-                
             } else if (value === 'Char-Cat-Girl') {
                 console.log('You choose Char-Cat-Girl');
             } else if (value === 'Char-Horn-Girl') {
@@ -97,6 +70,38 @@ function click1() {
         }
     })
 }
+
+// Enemies our player must avoid
+let Enemy = function (x, y, speed) {
+    // Variables applied to each of our instances go here,
+    // we've provided one for you to get started
+
+    // The image/sprite for our enemies, this uses
+    // a helper we've provided to easily load images
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.sprite = 'images/enemy-bug.png';
+};
+
+// Update the enemy's position, required method for game
+// Parameter: dt, a time delta between ticks
+Enemy.prototype.update = function () {
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+};
+
+// Draw the enemy on the screen, required method for game
+Enemy.prototype.render = function () {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Now write your own player class
+// This class requires an update(), render() and
+// a handleInput() method.
+
+
 
 let Player = function (x, y, speed, value) {
     this.x = x;
