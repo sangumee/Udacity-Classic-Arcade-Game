@@ -5,8 +5,8 @@ function CharacterChoose() {
         input: [
             '<img src="images/char-boy.png" class="imagepadding" />',
             '<img src="images/char-cat-girl.png" class="imagepadding" />',
-            '<img src="images/char-horn-girl.png" class="imagepadding" />',
             '<img src="images/char-pink-girl.png" class="imagepadding" />',
+            '<img src="images/char-horn-girl.png" class="imagepadding" />',
             '<img src="images/char-princess-girl.png" class="imagepadding" />'
         ].join(''),
         buttons: [
@@ -53,20 +53,27 @@ function CharacterChoose() {
         ],
         callback: function (value) {
             // char-boy','char-cat-girl','char-horn-girl','char-pink-girl','char-princess-girl
-            if (value === 'Char-Boy') {
-                console.log('You choose Char-boy');
-            } else if (value === 'Char-Cat-Girl') {
-                console.log('You choose Char-Cat-Girl');
-            } else if (value === 'Char-Horn-Girl') {
-                console.log('you choose Char-Horn-Girl');
-            } else if (value === 'Char-Pink-Girl') {
-                console.log('You Choose Char-Pink-Girl');
-            } else if (value === 'Char-Princess-Girl') {
-                console.log('You Choose Char-Princess-Girl');
-            } else {
-                console.log('Choose Nothing');
+            switch (value) {
+                case "char-boy":
+                    console.log('You choose Char-boy');
+                    break;
+                case "char-cat-girl":
+                    console.log('You choose Char-Cat-Girl');
+                    break;
+                case "char-horn-girl":
+                    console.log('you choose Char-Horn-Girl');
+                    break;
+                case "char-pink-girl":
+                    console.log('You Choose Char-Pink-Girl');
+                    break;
+                case "char-princess-girl":
+                    console.log('You Choose Char-Princess-Girl');
+                    break;
+                default:
+                case "char-boy":
+                    console.log('You choose Char-boy');
+                    break;
             }
-            return value;
         }
     })
 }
