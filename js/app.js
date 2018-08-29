@@ -3,7 +3,7 @@ function CharacterChoose() {
     vex.dialog.open({
         message: 'Which character do you want to play?',
         input: [
-            '<img src="images/char-boy.png" class="imagepadding" />',
+            '<label for="char-boy"><img src="images/char-boy.png" class="imagepadding" /></label>',
             '<img src="images/char-cat-girl.png" class="imagepadding" />',
             '<img src="images/char-pink-girl.png" class="imagepadding" />',
             '<img src="images/char-horn-girl.png" class="imagepadding" />',
@@ -11,7 +11,6 @@ function CharacterChoose() {
         ].join(''),
         buttons: [
             $.extend({}, vex.dialog.buttons.NO, {
-                className: 'vex-dialog-button-primary-horizontal',
                 text: 'Char-Princess-Girl',
                 click: function () {
                     this.value = 'char-princess-girl';
@@ -19,7 +18,6 @@ function CharacterChoose() {
                 }
             }),
             $.extend({}, vex.dialog.buttons.NO, {
-                className: 'vex-dialog-button-primary-horizontal',
                 text: 'Char-Horn-Girl',
                 click: function () {
                     this.value = 'char-horn-girl';
@@ -27,7 +25,6 @@ function CharacterChoose() {
                 }
             }),
             $.extend({}, vex.dialog.buttons.NO, {
-                className: 'vex-dialog-button-primary-horizontal',
                 text: 'Char-Pink-Girl',
                 click: function () {
                     this.value = 'char-pink-girl';
@@ -35,7 +32,6 @@ function CharacterChoose() {
                 }
             }),
             $.extend({}, vex.dialog.buttons.NO, {
-                className: 'vex-dialog-button-primary-horizontal',
                 text: 'Char-Cat-Girl',
                 click: function () {
                     this.value = 'char-cat-girl';
@@ -43,7 +39,6 @@ function CharacterChoose() {
                 }
             }),
             $.extend({}, vex.dialog.buttons.NO, {
-                className: 'vex-dialog-button-primary-horizontal',
                 text: 'Char-Boy',
                 click: function () {
                     this.value = 'char-boy';
@@ -56,26 +51,41 @@ function CharacterChoose() {
             switch (value) {
                 case "char-boy":
                     console.log('You choose Char-boy');
+                    ChooseChar(value);
                     break;
                 case "char-cat-girl":
                     console.log('You choose Char-Cat-Girl');
+                    ChooseChar(value);
                     break;
                 case "char-horn-girl":
                     console.log('you choose Char-Horn-Girl');
+                    ChooseChar(value);
                     break;
                 case "char-pink-girl":
                     console.log('You Choose Char-Pink-Girl');
+                    ChooseChar(value);
                     break;
                 case "char-princess-girl":
                     console.log('You Choose Char-Princess-Girl');
+                    ChooseChar(value);
                     break;
                 default:
                 case "char-boy":
                     console.log('You choose Char-boy');
+                    ChooseChar(value);
                     break;
             }
         }
     })
+}
+
+// Choose Character
+function ChooseChar(value) {
+    Player.sprite = 'images/' + value + '.png';
+    Player.prototype.render = function () {
+        ctx.drawImage(Resources.get(Player.sprite), this.x, this.y);
+    }
+    console.log(Player.sprite);
 }
 
 // Enemies our player must avoid
@@ -110,12 +120,11 @@ Enemy.prototype.render = function () {
 
 
 
-let Player = function (x, y, speed, value) {
+let Player = function (x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.sprite = 'images/' + value + '.png';
-
+    this.sprite;
 };
 
 
@@ -124,7 +133,7 @@ Player.prototype.update = function () {
 };
 
 Player.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    // ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 
@@ -133,8 +142,7 @@ Player.prototype.render = function () {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 let allEnemies = [];
-let char = 'char-boy';
-let player = new Player(200, 400, 100, char);
+let player = new Player(200, 400, 100);
 
 
 
