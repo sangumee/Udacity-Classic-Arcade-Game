@@ -79,6 +79,18 @@ function CharacterChoose() {
     })
 }
 
+// Check Score Function
+function CheckScore(score){
+    if(score==5){
+        vex.dialog.confirm({
+            message: 'Your Score is 5 point!! Do you want to play more?',
+            callback: function (value) {
+                console.log(value)
+            }
+        })
+    }
+}
+
 // Choose Character
 function ChooseChar(value) {
     Player.sprite = 'images/' + value + '.png';
@@ -127,14 +139,15 @@ Enemy.prototype.update = function (dt) {
         player.y < item.y + 50 &&
         50 + player.y > item.y) {
         // Reset initial position
+        
         score+=1;
+        CheckScore(score);
         item.x=Math.random() *400;
         item.y=itemInitPosition[Math.floor(Math.random()*itemInitPosition.length)];
         // Draw Scroe in HTML
         document.getElementById('score').innerHTML = score;
         console.log(score);
-    }
-    
+        }
 };
 
 // Enemy Image Render
@@ -165,7 +178,6 @@ let Player = function (x, y, speed) {
     this.speed = speed;
     this.sprite = 'images/char-boy.png';
 };
-
 
 
 // Player update
