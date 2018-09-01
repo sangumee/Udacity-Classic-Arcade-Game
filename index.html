@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
     <title>Classic Arcade Game Project</title>
     <link rel="stylesheet" href="css/style.css">
@@ -10,7 +13,7 @@
     <script src="./js/vex.combined.min.js"></script>
     <script>
         vex.defaultOptions.className = 'vex-theme-os'
-    </script>
+        </script>
     <link rel="stylesheet" href="./css/vex.css" />
     <link rel="stylesheet" href="./css/vex-theme-os.css" />
     <!-- jQuery -->
@@ -21,17 +24,18 @@
 </head>
 
 <body>
-    <h2>Your Score is: <span id="score"></h2>
-    <script src="js/resources.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/engine.js"></script>
-    <script>
-        CharacterChoose();
-    </script>
-    <br />
-    <button onclick="CharacterChoose();">Change My Character</button>
+
+    <body>
+        <h2>Your Score is: <span id="score"></h2>
+        <script src="js/resources.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/engine.js"></script>
+        <script>
+            CharacterChoose();
+        </script>
+        <br />
+        <button onclick="CharacterChoose();">Change My Character</button>
+    </body>
 </body>
-
-
 
 </html>
