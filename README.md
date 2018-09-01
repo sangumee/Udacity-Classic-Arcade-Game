@@ -6,6 +6,9 @@ This repository is the code I created in Udacity's Udacity-Classic Arcade Game p
 # Demo
 Currently, this web page is hosted using the GitHub Pages feature because it is a site developed solely using static files. You can access with this [Link](https://sangumee.github.io/Udacity-Classic-Arcade-Game/)
 
+# How to Play this game
+First you have to choose your character what you want.  
+You can use ↑,↓,←,→ or W,A,S,D Key to control your character, then you have to control your character and cross the blocks without collision with enemies. While you cross the blocks you can earn 'heart' item to earn points. When your character is reached the water side you can get point also. Finally, when you get 5 points, the game will be alert the console.
 
 # Installation
 You can download with this [link](https://github.com/sangumee/Udacity-Classic-Arcade-Game/archive/master.zip) and install in your web server. If you already installed the Visual Studio Code or Github Program, You can access it directly with these programs.
