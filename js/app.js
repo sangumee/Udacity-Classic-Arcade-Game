@@ -3,6 +3,7 @@ function CharacterChoose() {
     vex.dialog.open({
         message: 'Which character do you want to play?',
         input: [
+            // TODO :: add label - img to when I choose image also run click event
             '<label for="char-boy"><img src="images/char-boy.png" class="imagepadding" /></label>',
             '<img src="images/char-cat-girl.png" class="imagepadding" />',
             '<img src="images/char-pink-girl.png" class="imagepadding" />',
@@ -87,7 +88,10 @@ function ChooseChar(value) {
     console.log(Player.sprite);
 }
 
-// Enemies our player must avoid
+// Init Score setting
+let score = 0;
+
+// Enemy Class
 var Enemy = function (x, y, speed) {
     this.x = x;
     this.y = y;
@@ -95,15 +99,14 @@ var Enemy = function (x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+// Enemy update
 Enemy.prototype.update = function (dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
 
-    // Reset the position again when you leave the canvas
+    // Reset the position again when enemies are leave the canvas
     if (this.x > 550) {
         this.x = -100;
         this.speed = 50 + Math.floor(Math.random() * 512);
@@ -118,45 +121,44 @@ Enemy.prototype.update = function (dt) {
         player.x = 200;
         player.y = 380;
     }
+    // Check collision between player and Items
+    if (player.x < item.x + 50 &&
+        player.x + 50 > item.x &&
+        player.y < item.y + 50 &&
+        50 + player.y > item.y) {
+        // Reset initial position
+        score+=1;
+        item.x=Math.random() *400;
+        item.y=itemInitPosition[Math.floor(Math.random()*itemInitPosition.length)];
+        // Draw Scroe in HTML
+        document.getElementById('score').innerHTML = score;
+        console.log(score);
+    }
+    
 };
 
-// Draw the enemy on the screen, required method for game
+// Enemy Image Render
 Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-let Item = function (x, y, speed) {
+// Item Class
+let Item = function (x, y) {
     this.x = x;
     this.y = y;
-    this.speed=speed;
     this.sprite = 'images/Heart.png';
 };
 
 
-Item.prototype.update = function (dt) {
-    this.x += this.speed * dt;
-    if (player.x < this.x + 50 &&
-        player.x + 50 > this.x &&
-        player.y < this.y + 50 &&
-        50 + player.y > this.y) {
-        // Reset initial position
-        score += 1;
-        player.x = 200;
-        player.y = 380;
-    }
+Item.prototype.update = function () {
 };
-// Item Render
+
+// Item Image Render
 Item.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Check Item collision with player
-
-
-
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// Player Class
 let Player = function (x, y, speed) {
     this.x = x;
     this.y = y;
@@ -164,9 +166,9 @@ let Player = function (x, y, speed) {
     this.sprite = 'images/char-boy.png';
 };
 
-// Init Score setting
-let score = 0;
 
+
+// Player update
 Player.prototype.update = function () {
     // Side Collision Check
     if (this.x > 400) {
@@ -178,12 +180,14 @@ Player.prototype.update = function () {
     if (this.y > 400) {
         this.y = 400;
     }
-    // When Player reach the goal
+    // When Player reaches the goal
     if (this.y < -50) {
         this.x = 200;
         this.y = 390;
         // Increase score
         score += 1;
+        // Draw it in HTML
+        document.getElementById('score').innerHTML = score;
         console.log(score);
     }
 };
@@ -212,22 +216,19 @@ Player.prototype.handleInput = function (keyPress) {
 // Initial Setting because I don't want to repetition
 ChooseChar('char-boy');
 
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
 let allEnemies = [];
+// Init player location
 let player = new Player(200, 400, 50);
+// Init enemies location
 let enemyInitPosition = [60, 140, 220, 300];
 let enemy;
-
 // Item value Y setting
 let itemInitPosition = [60, 140, 220, 300];
-// Random locate
+// Random item location
 let item =new Item(Math.random() * 512, itemInitPosition[Math.floor(Math.random()*itemInitPosition.length)]);
 
-enemyInitPosition.forEach(function (posY) {
-    enemy = new Enemy(0, posY, 50 + Math.floor(Math.random() * 512));
+enemyInitPosition.forEach(function (positionY) {
+    enemy = new Enemy(0, positionY, 50 + Math.floor(Math.random() * 512));
     allEnemies.push(enemy);
 });
 
@@ -239,7 +240,7 @@ document.addEventListener('keyup', function (e) {
         38: 'up',
         39: 'right',
         40: 'down',
-        // Add Key code to use WASD Button
+        // Add Key code to use W,A,S,D Button
         65: 'left',
         87: 'up',
         68: 'right',
@@ -248,6 +249,3 @@ document.addEventListener('keyup', function (e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-
-
-// Check this link https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true
