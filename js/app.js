@@ -1,3 +1,5 @@
+"use strict";
+
 // To choose Character with VEX Library
 function CharacterChoose() {
     vex.dialog.open({
