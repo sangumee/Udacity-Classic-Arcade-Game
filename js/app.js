@@ -80,8 +80,8 @@ function CharacterChoose() {
 }
 
 // Check Score Function
-function CheckScore(score){
-    if(score==5){
+function CheckScore(score) {
+    if (score == 5) {
         vex.dialog.confirm({
             message: 'Your Score is 5 point!! Do you want to play more?',
             callback: function (value) {
@@ -139,15 +139,15 @@ Enemy.prototype.update = function (dt) {
         player.y < item.y + 50 &&
         50 + player.y > item.y) {
         // Reset initial position
-        
-        score+=1;
+
+        score += 1;
         CheckScore(score);
-        item.x=Math.random() *400;
-        item.y=itemInitPosition[Math.floor(Math.random()*itemInitPosition.length)];
+        item.x = Math.random() * 400;
+        item.y = itemInitPosition[Math.floor(Math.random() * itemInitPosition.length)];
         // Draw Scroe in HTML
         document.getElementById('score').innerHTML = score;
         console.log(score);
-        }
+    }
 };
 
 // Enemy Image Render
@@ -163,8 +163,7 @@ let Item = function (x, y) {
 };
 
 
-Item.prototype.update = function () {
-};
+Item.prototype.update = function () {};
 
 // Item Image Render
 Item.prototype.render = function () {
@@ -237,7 +236,7 @@ let enemy;
 // Item value Y setting
 let itemInitPosition = [60, 140, 220, 300];
 // Random item location
-let item =new Item(Math.random() * 512, itemInitPosition[Math.floor(Math.random()*itemInitPosition.length)]);
+let item = new Item(Math.random() * 512, itemInitPosition[Math.floor(Math.random() * itemInitPosition.length)]);
 
 enemyInitPosition.forEach(function (positionY) {
     enemy = new Enemy(0, positionY, 50 + Math.floor(Math.random() * 512));
