@@ -104,7 +104,7 @@ function ChooseChar(value) {
 let score = 0;
 
 // Enemy Class
-var Enemy = function (x, y, speed) {
+let Enemy = function (x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -247,7 +247,7 @@ enemyInitPosition.forEach(function (positionY) {
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function (e) {
-    var allowedKeys = {
+    let allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
