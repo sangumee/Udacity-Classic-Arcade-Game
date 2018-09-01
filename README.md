@@ -1,7 +1,7 @@
 # Udacity-Classic-Arcade-Game ![](https://img.shields.io/badge/Code%20Statue-Open-brightgreen.svg)
 This repository is the code I created in Udacity's Udacity-Classic Arcade Game project.
 
-<img src="https://i.imgur.com/VnPC5lG.gif"/>
+<img src="https://i.imgur.com/VnPC5lG.gif" width="600px" height="400px"/>
 
 # Demo
 Currently, this web page is hosted using the GitHub Pages feature because it is a site developed solely using static files. You can access with this [Link](https://sangumee.github.io/Udacity-Classic-Arcade-Game/)
