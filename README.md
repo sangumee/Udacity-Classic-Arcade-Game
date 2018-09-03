@@ -1,4 +1,4 @@
-# Udacity-Classic-Arcade-Game ![](https://img.shields.io/badge/Code%20Statue-Open-brightgreen.svg)
+# Udacity-Classic-Arcade-Game ![](https://img.shields.io/badge/Code%20Statue-Close-red.svg)
 This repository is the code I created in Udacity's Udacity-Classic Arcade Game project.
 
 <img src="./images/introduce.gif"/>
